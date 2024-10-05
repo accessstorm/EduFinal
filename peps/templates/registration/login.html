@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="icon" type="image/png" href="{% static 'images/logoEdu.png' %}">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to top right, #d9dfff, #464daf); /* Background gradient */
+        }
+        
+
+        .login-container {
+            width: 700px;
+            padding: 40px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .image-section {
+            text-align: center;
+        }
+
+        .form-section {
+            width: 60%;
+            text-align: left;
+        }
+
+        img {
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        .educonnect-text {
+            font-size: 18px;
+            font-weight: 500;
+            color: #4f57d4;
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #4f57d4;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        form input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4f57d4;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #1669c1;
+        }
+
+        .forgot-password {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .forgot-password a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-container">
+        <!-- Image and EduConnect text on the right -->
+        <div class="image-section">
+            <img src="{% static 'images/logoEdu.png' %}" alt="Logo">
+            <div class="educonnect-text"><strong>EduConnect</strong></div>
+        </div>
+
+        <div class="form-section">
+            <h1>Login</h1>
+
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Login</button>
+            </form>
+
+            <div class="forgot-password" align='center'>
+                <a href="{% url 'register' %}">Not signed up yet? Try signing up</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

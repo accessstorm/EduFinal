@@ -1,0 +1,393 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+    <link rel="icon" type="image/png" href="{% static 'images/logoEdu.png' %}">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Montserrat', sans-serif;
+            padding: 50px;
+            margin: 0;
+        }
+    
+        h1 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            color: #6c757d;
+            position: relative;
+        }
+    
+        h1::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background-color: #6c757d;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -10px;
+            border-radius: 2px;
+        }
+    
+        .post-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; /* Center align items horizontally */
+        }
+    
+        .post-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 10px; /* Adjust margin as needed */
+            width: calc(25% - 20px); /* Four items per row with margin */
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            border: none;
+        }
+    
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+    
+        .post-card .card-body {
+            padding: 20px;
+        }
+    
+        .post-card .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+    
+        .post-card .card-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+            height: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    
+        .post-card .card-text:hover {
+            white-space: normal;
+            overflow: visible;
+            height: auto;
+        }
+    
+        .post-card .post-meta {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+    
+        .post-card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 600;
+            transition: color 0.3s ease-in-out;
+        }
+    
+        .post-card a:hover {
+            color: #0056b3;
+        }
+    
+        .post-card hr {
+            border: none;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 15px 0;
+        }
+    
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 1050; /* Ensure the sidebar is on top of other content */
+        }
+    
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+        }
+    
+        .sidebar a:hover {
+            color: #fff;
+            background-color: #007bff;
+        }
+    
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 2rem;
+            color: #f1f1f1;
+            margin-left: 50px;
+            cursor: pointer;
+        }
+    
+        /* Navbar Styles */
+        .navbar-brand {
+            cursor: pointer;
+        }
+    
+        .navbar-toggler {
+            background-color: transparent;
+        }
+    
+        .logout-btn:hover {
+            background-color: red;
+            border-color: red;
+            color: white;
+        }
+    
+        .logout-btn i {
+            margin-right: 5px; /* Adds some space between the icon and text */
+        }
+    
+        .category-text {
+            color: grey;
+            font-size: 1rem; /* Adjust the size as needed */
+        }
+        
+        .custom-navbar {
+            border-radius: 25px; /* Rounded corners */
+            padding: 10px 20px; /* Padding for a defined shape */
+            margin: 10px; /* Margin for spacing */
+            background-color: #443a70; /* Dark background */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+        
+        .search-bar {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-input {
+            border: 1px solid #ccc; /* Border color */
+            border-radius: 30px; /* Rounded corners for input */
+            padding: 10px 15px; /* Padding for input */
+            padding-left: 40px; /* Increased left padding for more space */
+            margin-left: 10px; /* Space between icon and input */
+            width: 300px; /* Width of the search bar */
+        }
+        
+        
+        .search-icon {
+            position: absolute;
+            left: 25px; /* Position of the icon inside input */
+            color: #7b7b7b; /* Greyish color for the icon */
+        }
+        
+
+
+
+        /* Responsive adjustments */
+        @media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+    
+            .sidebar a {
+                font-size: 1rem;
+            }
+        }
+    
+        @media screen and (max-width: 768px) {
+            .post-card {
+                width: calc(50% - 20px); /* Two items per row on smaller screens */
+            }
+        }
+    
+        @media screen and (max-width: 576px) {
+            .post-card {
+                width: calc(100% - 20px); /* One item per row on very small screens */
+            }
+        }
+    </style>
+    
+</head>
+
+<body>
+
+
+    <!-- Top navbar -->
+
+    <nav class="navbar navbar-dark bg-dark sticky-top custom-navbar">
+        <div class="container-fluid">
+            {% if user.profile.id %}
+            <a class="navbar-brand" href="{% url 'show_profile_page' user.profile.id %}">
+                
+                <span>{{ user.username }}</span>
+            
+            </a>
+            {% else %}
+            <h4 style="color: white;">Guest User</h4>
+            {% endif %}
+            
+            <div class="search-bar">
+                <i class="fa fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search...">
+            </div>
+        </div>
+    </nav>
+    
+
+    <!-- Navbar -->
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" onclick="openSidebar()">Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        {% if cat_menu %}
+        <ul class="navbar-nav ml-3">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    
+                {% for item in cat_menu|slice:":5" %}
+                    <a class="dropdown-item" href="{% url 'category' item %}">
+                        {{ item }}<br/>
+                    </a>
+                {% endfor %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'all_categories' %}">All Categories</a>
+                </div>
+            </li>
+        </ul>
+        {% endif %}
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+
+                
+
+                <li class="nav-item">
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-secondary logout-btn" type="submit">
+                            <i class="fa fa-power-off"></i> Logout
+                        </button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <br/>
+        <a href="{% url 'postT' %}">Create Post</a>
+        <br/>
+        <a href="{% url 'add_category' %}">Add a Category</a>
+        <br/>
+        {% if user.profile.id %}
+        <a href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile page</a>
+        {% elif user.is_authenticated %}
+        <a href="{% url 'create_profile_page' %}">Create Profile page</a>
+        {% endif %}
+        <br/>
+        {% if user.is_authenticated %}
+        <a href="{% url 'edit_profile' %}">Settings</a>
+        {% endif %}
+    </div>
+
+    {% block content %}
+    <h1>All Posts</h1>
+    {% endblock %}
+
+    
+
+    <div class="post-list">
+        {% for post in object_list %}
+        <div class="post-card card">
+            <div class="card-body">
+                
+                <h2 class="card-title">
+                    <a href="{% url 'view2' post.pk %}">
+                        {{ post.title|slice:":17" }}{% if post.title|length > 17 %}...
+                        {% endif %}
+                    </a>
+                    <br/>
+                    <hr/>
+                </h2>
+                <div class="post-meta">
+                    <h6 class="category-text"><a href="{% url 'category' post.category %}">{{ post.category }}</a></h6>
+                    <i class="fa fa-user"></i> {{ post.author.first_name }} {{ post.author.last_name }} <br />
+                    <i class="fa fa-envelope"></i> {{ post.author.email }}<br/>
+                    <i class="fa fa-clock"></i> {{ post.post_date }} <br />
+                    
+                </div>
+                <hr>
+                <p class="card-text">{{ post.summary }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    
+
+    <!-- JavaScript to toggle sidebar -->
+    <script>
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "230px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

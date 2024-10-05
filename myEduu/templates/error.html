@@ -1,0 +1,157 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            display: flex;
+            flex-direction: row; /* Set row direction to place 3D element on the left */
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f0f4f8, #d0e2f3);
+            font-family: 'Roboto', sans-serif; /* Using Google Roboto font */
+            overflow: hidden;
+            perspective: 1500px;
+        }
+
+        .image-container {
+            position: relative;
+            width: 150px; /* Set a fixed width */
+            height: 150px; /* Set a fixed height */
+            animation: rotate 10s infinite linear;
+        }
+
+        .image {
+            width: 100%;
+            height: auto;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform: scale(1.5); /* Scale to 150% */
+            transition: transform 0.5s ease;
+        }
+
+        /* 3D Animation */
+        @keyframes rotate {
+            from {
+                transform: rotateY(0);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+
+        /* Floating Shapes */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 0;
+            animation: float 10s ease-in-out infinite;
+        }
+
+        .shape-large {
+            width: 400px;
+            height: 400px;
+            top: -10%;
+            left: 5%;
+            background: rgba(0, 0, 0, 0.05);
+            transform: rotateX(20deg);
+        }
+
+        .shape-medium {
+            width: 250px;
+            height: 250px;
+            bottom: 10%;
+            right: 10%;
+            background: rgba(0, 0, 0, 0.1);
+            transform: rotateX(30deg);
+        }
+
+        .shape-small {
+            width: 150px;
+            height: 150px;
+            bottom: 20%;
+            left: 35%;
+            background: rgba(0, 0, 0, 0.15);
+            transform: rotateX(40deg);
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Message Container */
+        .message-container {
+            background-color: rgba(255, 255, 255, 0.8); /* White with 80% transparency */
+            padding: 45px 40px;
+            border-radius: 9px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            margin-left: 100px; /* Space between image and text */
+            max-width: 600px;
+        }
+
+        .message {
+            font-size: 22px;
+            color: #333; /* Dark grey color */
+            text-align: center;
+            font-weight: 300; /* Thin text */
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        h4, h5, small {
+            font-weight: 300;
+            color: #333;
+        }
+
+
+    </style>
+</head>
+<body>
+   
+    <div class="shape shape-large"></div>
+    <div class="shape shape-medium"></div>
+    <div class="shape shape-small"></div>
+   
+    <div class="image-container">
+        <img src="{% static 'images/danger.png' %}" alt="Danger" class="image">
+        <img src="{% static 'images/danger.png' %}" alt="Danger" class="image">
+    </div>
+
+    <!-- Message with transparent container and thin text -->
+    <div class="message-container" align="center">
+        <div class="message"><strong>You're not allowed here!</strong></div>
+        <ul>
+            <h4><small>You are seeing this page for the following reasons:</small></h4>
+            <li><h5><small>1. You're trying to access a feature which requires logging in.</small></h5></li>
+            <li><h5><small>2. You accidentally typed in the wrong URL for the webpage.</small></h5></li>
+            <li><h5><small>3. You're trying to access someone else's sensitive details.</small></h5></li>
+        </ul>
+	<br/>
+        <h4><small>Register and/or Login to access all features.</small></h4>
+    </div>
+
+</body>
+</html>

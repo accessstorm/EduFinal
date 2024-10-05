@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="icon" type="image/png" href="{% static 'images/logoEdu.png' %}">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to top right, #d9dfff, #464daf); /* Background gradient */
+            padding-top: 300px;
+            padding-bottom: 300px; /* Add padding to prevent content from being cut off */
+        }
+
+        .register-container {
+            width: 600px; /* Increased width */
+            padding: 40px;
+            background-color: #ffffff; /* Light background for container */
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 120px; /* Slightly larger logo */
+            margin-right: 20px; /* Space between the logo and the text */
+        }
+
+        .educonnect-text {
+            font-size: 24px;
+            font-weight: 500;
+            color: #4f57d4; /* Main theme color */
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #4f57d4; /* Main theme color */
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form p {
+            width: 100%;
+            max-width: 520px; /* Set max width for form elements */
+            text-align: left;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        form input {
+            width: 100%;
+            max-width: 520px; /* Set max width for input fields */
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            max-width: 520px; /* Button matches form width */
+            background-color: #4f57d4; /* Main theme color */
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #3e4fbd; /* Darker shade of main theme color for hover */
+        }
+
+        .login-link {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: #4f57d4; /* Main theme color */
+            text-decoration: none;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsiveness */
+        @media (max-width: 768px) {
+            .register-container {
+                width: 100%;
+            }
+
+            .logo-container {
+                flex-direction: column;
+            }
+
+            .logo-container img {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <!-- Logo and EduConnect text side by side -->
+        <div class="logo-container">
+            <img src="{% static 'images/logoEdu.png' %}" alt="Logo">
+            <div class="educonnect-text">EduConnect</div>
+        </div>
+        
+        <br/>
+        <hr>
+        <br/>
+
+        <h1>Sign Up</h1>
+
+        <form method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Register</button>
+        </form>
+        <br/>
+        <div class="login-link">
+            <a href="{% url 'login' %}">Already have an account? Login</a>
+        </div>
+
+    </div>
+</body>
+</html>

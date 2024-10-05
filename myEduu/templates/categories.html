@@ -1,0 +1,131 @@
+{% extends 'view1.html' %}
+{% block content %}
+{% if category_posts %}
+    <style>
+        .post-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 15px;
+            width: 100%; /* Full width of column */
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            border: none;
+        }
+
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .post-card .card-body {
+            padding: 20px;
+        }
+
+        .post-card .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .post-card .card-text {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+            height: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .post-card .card-text:hover {
+            white-space: normal;
+            overflow: visible;
+            height: auto;
+        }
+
+        .post-card .post-meta {
+            font-size: 0.8rem;
+            color: #999;
+            margin-bottom: 10px;
+        }
+
+        .post-card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 600;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .post-card a:hover {
+            color: #0056b3;
+        }
+
+        .post-card hr {
+            border: none;
+            height: 1px;
+            background-color: #e0e0e0;
+            margin: 15px 0;
+        }
+
+        /* Adjust container alignment */
+        .container {
+            padding-top: 50px;
+        }
+
+        .row {
+            justify-content: center; /* Centers the post cards horizontally */
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+    </style>
+
+   <div class="container">
+       <h1>{{ cats }}</h1>
+       <div class="row">
+           {% for post in category_posts %}
+                <!-- Adjust column width here (3 for 4 columns, 4 for 3 columns) -->
+                   <div class="post-card card">
+                       <div class="card-body">
+                           <h2 class="card-title">
+                               <a href="{% url 'view2' post.pk %}">
+                                   {{ post.title }}
+                               </a>
+                               <br/>
+                               <hr/>
+                           </h2>
+                           <div class="post-meta">
+                               <i class="fa fa-user"></i> {{ post.author.first_name }} {{ post.author.last_name }} <br />
+                               <i class="fa fa-envelope"></i> {{ post.author.email }} <br/>
+                               <i class="fa fa-clock"></i> {{ post.post_date }} <br />
+                               {% if user.is_authenticated %}
+                               <h6></h6><i class="fa fa-pen"></i><a href="{% url 'update_post' post.pk %}"> Edit Post</a>
+                               {% endif %}
+                           </div>
+                           <hr>
+                           <p class="card-text">{{ post.summary|safe }}</p>
+                       </div>
+                   </div>
+              
+           {% endfor %}
+       </div>
+   </div>
+
+{% else %}
+    <h1>{{ cats }}</h1>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <p align='center'>No posts available in this category.</p>
+{% endif %}
+
+
+{% endblock %}

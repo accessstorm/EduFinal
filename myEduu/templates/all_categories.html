@@ -1,0 +1,25 @@
+{% extends "view1.html" %}
+
+{% block content %}
+<div class="container my-4">
+    <h1 class="mb-4">All Categories</h1>
+<br/>
+<br/>
+    <!-- Categories List -->
+    {% for letter in 'ABCDEFGHIJKLMNOPQRSTUVWXYZ' %}
+    <br/>
+    <br/>
+        <h4 class="mt-4">{{ letter }}</h4>
+        <div class="list-group mb-4">
+            {% for item in cat_menu_list %}
+                {% if item.name|slice:":1"|upper == letter %}
+                <a class="list-group-item list-group-item-action" href="{% url 'category' item.name %}">
+                    {{ item.name }}
+                </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

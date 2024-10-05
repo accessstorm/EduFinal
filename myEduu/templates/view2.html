@@ -1,0 +1,412 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title_tag }}</title>
+    <link rel="icon" type="image/png" href="{% static 'images/logoEdu.png' %}">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar-brand {
+            cursor: pointer;
+            padding-left: 50px; /* Adjust spacing as needed */
+        }
+
+        .navbar-toggler {
+            background-color: transparent;
+        }
+
+        .nav-link {
+            margin-right: 67px; /* Adjust spacing as needed */
+        }
+
+        .logout-btn:hover {
+            background-color: red;
+            border-color: red;
+            color: white;
+        }
+
+        .logout-btn {
+            margin-right: 67px; /* Adjust spacing as needed */
+        }
+        
+        .logout-btn i {
+            margin-right: 5px; /* Adds some space between the icon and text */
+        }
+
+        .category-text {
+            color: grey;
+            font-size: 1rem; /* Adjust the size as needed */
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: #343a40;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+            z-index: 1050; /* Ensure the sidebar is on top of other content */
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            color: #fff;
+            background-color: #007bff;
+        }
+
+        .sidebar .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 2rem;
+            color: #f1f1f1;
+            margin-left: 50px;
+            cursor: pointer;
+        }
+
+        /* Post Container Styles */
+        .post-container {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            margin: 30px auto;
+            width: 90%; /* Increased width for larger container */
+            max-width: 1200px; /* Maximum width to maintain responsiveness */
+        }
+
+
+        h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        h1::after {
+            content: '';
+            width: 100px;
+            height: 3px;
+            background-color: #007bff;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border-radius: 2px;
+        }
+
+        small {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .post-body {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #555;
+            margin-top: 20px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            background-color: #ddd;
+            margin: 20px 0;
+        }
+
+        .back-link {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #007bff;
+            text-decoration: none;
+            margin-top: 20px;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #0056b3;
+        }
+
+        .back-link i {
+            margin-right: 5px;
+        }
+
+        .author-username {
+            font-size: 1.2rem; /* Larger font size for better readability */
+            font-weight: 600; /* Makes the username bold */
+            color: #000000; /* A shade of blue to match the theme */
+        }
+        
+        
+        
+
+
+        /* Responsive adjustments */
+        @media screen and (max-height: 450px) {
+            .sidebar {
+                padding-top: 15px;
+            }
+
+            .sidebar a {
+                font-size: 1rem;
+            }
+        }
+
+        
+
+        @media screen and (max-width: 768px) {
+            .post-card {
+                width: calc(50% - 20px); /* Two items per row on smaller screens */
+            }
+        }
+
+        @media screen and (max-width: 576px) {
+            .post-card {
+                width: calc(100% - 20px); /* One item per row on very small screens */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    
+<br/>
+<br/>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" onclick="openSidebar()">Manager</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+
+        {% if cat_menu %}
+        <ul class="navbar-nav ml-3">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Categories
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    
+                {% for item in cat_menu|slice:":5" %}
+                    <a class="dropdown-item" href="{% url 'category' item %}">
+                        {{ item }}<br/>
+                    </a>
+                {% endfor %}
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{% url 'all_categories' %}">All Categories</a>
+                </div>
+            </li>
+        </ul>
+        {% endif %}
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+
+                
+
+                <li class="nav-item">
+                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-secondary logout-btn" type="submit">
+                            <i class="fa fa-power-off"></i> Logout
+                        </button>
+                    </form>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
+        <br/>
+        <a href="{% url 'postT' %}">Create Post</a>
+        <br/>
+        <a href="{% url 'add_category' %}">Add a Category</a>
+        <br/>
+        {% if user.profile.id %}
+        <a href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile page</a>
+        {% elif user.is_authenticated %}
+        <a href="{% url 'create_profile_page' %}">Create Profile page</a>
+        {% endif %}
+        <br/>
+        {% if user.is_authenticated %}
+        <a href="{% url 'edit_profile' %}">Settings</a>
+        {% endif %}
+    </div>
+
+
+    <!-- Content -->
+    <div class="post-container">
+        <div class="d-flex justify-content-end">
+            <a href="{% url 'view1' %}" class="back-link"><i class="fa fa-arrow-left"></i> Back</a>
+        </div>
+{% if user.is_authenticated %}
+        <a href="{% url 'show_profile_page' post.author.profile.id %}">
+        <div class="d-flex align-items-center mb-3">
+            {% if post.author.profile.profile_pic %}
+            <img src="{{ post.author.profile.profile_pic.url }}" width="60" height="60" class="mr-3 rounded-circle" alt="Author Profile Picture">
+            {% else %}
+            <img src="{% static 'images/default.jpg' %}" width="60" height="60" class="mr-3 rounded-circle" alt="Author Profile Picture">
+            {% endif %}
+            <span class="author-username">{{ post.author.username }}</span>
+        </div>
+        </a>
+{% else %}
+<a href="{% url 'error' %}">
+    <div class="d-flex align-items-center mb-3">
+        {% if post.author.profile.profile_pic %}
+        <img src="{{ post.author.profile.profile_pic.url }}" width="60" height="60" class="mr-3 rounded-circle" alt="Author Profile Picture">
+        {% else %}
+        <img src="{% static 'images/default.jpg' %}" width="60" height="60" class="mr-3 rounded-circle" alt="Author Profile Picture">
+        {% endif %}
+        <span class="author-username">{{ post.author.username }}</span>
+    </div>
+    </a>
+{% endif %}
+
+        <hr>
+        <h1>{{ post.title }}</h1>
+        <small>By: {{ post.author.first_name }} {{ post.author.last_name }} | 
+        Posted on: {{ post.post_date }}</small>
+    
+        {% if user.is_authenticated %}
+            {% if user.id == post.author.id %}
+                <small><a href="{% url 'update_post' post.pk %}">Edit Post</a> | <a href="{% url 'delete_post' post.pk %}" style="color: red;">Delete Post</a></small>
+            {% endif %}
+        {% endif %}
+        <hr>
+        <div class="post-body">
+            {{ post.body|safe }}
+        </div>
+    
+        <br/>
+        <br/>
+        <br/>
+    
+        <!-- Updated like count display -->
+        <h6 align='right'>
+            {{ total_likes }} 
+            {% if total_likes == 1 %}
+                Like
+            {% else %}
+                Likes
+            {% endif %}
+        </h6>
+        <form action="{% url 'like_post' post.pk %}" method="post" style="margin-left: 10px;">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
+                {% if liked %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-danger">
+                        Dislike
+                    </button>
+                {% else %}
+                    <button type="submit" name="post_id" value="{{ post.id }}" class="btn btn-primary">
+                        Like
+                    </button>
+                {% endif %}
+            {% else %}
+                Login to like
+            {% endif %}
+        </form>
+    </div>
+    
+    <br/>
+    <br/>
+    
+    
+    
+    <p align='center'>
+        current user: {{ user.id }}<br/>
+        post author: {{ post.author.id }}
+    </p>
+    
+
+    <br/>
+    <div class="container">
+        <h2 class="mb-4" style="margin-left: 3px;">Comments</h2> <br/>
+        <div class="mb-3" style="margin-left: 5px; margin-right: 5px;">
+            {% if not post.comments.all %}
+                <div class="alert alert-info" role="alert">
+                    No comments yet. <a href="{% url 'add_comment' post.pk %}" class="alert-link">Be the first one to comment!</a>
+                </div>
+            {% else %}
+                <div class="mb-2">
+                    <a href="{% url 'add_comment' post.pk %}" class="btn btn-primary">Add Comment</a>
+                </div>
+                {% for comment in post.comments.all %}
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ comment.name }}</h5>
+                            <p class="card-text">{{ comment.body }}</p>
+                            <small class="text-muted">{{ comment.date_added }}</small>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+
+    <!-- JavaScript to toggle sidebar -->
+    <script>
+        function openSidebar() {
+            document.getElementById("mySidebar").style.width = "230px";
+        }
+
+        function closeSidebar() {
+            document.getElementById("mySidebar").style.width = "0";
+        }
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

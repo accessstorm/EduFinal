@@ -1,0 +1,37 @@
+{% extends 'postT.html' %}
+{% load static %}
+<body>
+
+{% block title %}<title>Edit Post</title>{% endblock %}
+{% if user.is_authenticated %}
+
+    {% if user.id == post.author.id %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header text-center text-white">
+            {% block header %}<h1 class="text-center" style="font-size: 2.5rem; font-weight: 500; color: #6c757d;">Edit Post</h1>{% endblock %}
+
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                
+                <div class="d-grid mt-4">
+                    {% block button %}<button type="submit" class="btn btn-success btn-lg">Update</button>{% endblock %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    {% else %}
+        LOL go away
+    {% endif %}
+
+{% else %}
+    LOL go away
+{% endif %}
+
+
+</body>
+</html>

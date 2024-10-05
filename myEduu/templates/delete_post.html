@@ -1,0 +1,40 @@
+{% extends 'add_category.html' %}
+{% load static %}
+<body>
+{% if user.is_authenticated %}
+
+    {% if user.id == post.author.id %}
+
+    {% block title %}<title>Delete this Post</title>{% endblock %}
+
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header text-center text-white">
+            {% block header %}<h2 align='center'>Delete Post: <br/> {{ post.title }}</h2>{% endblock %}
+        </div>
+        {% block body %}
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <h3 align='center'>This will permanently delete your Post!</h3>
+                <p align='center'>Are you sure you want to delete this post?</p>
+        {% endblock %}
+                <div class="d-grid mt-4">
+                    {% block button %}<button type="submit" class="btn btn-danger btn-lg">Delete</button>{% endblock %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    {% else %}
+        LOL go away
+    {% endif %}
+
+{% else %}
+    LOL go away
+{% endif %}
+
+</body>
+</html>
