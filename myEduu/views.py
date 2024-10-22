@@ -21,6 +21,18 @@ def loginT(request):
 def error(request):
     return render(request, 'error.html', {})
 
+def forum(request):
+    return render(request, 'forum.html', {})
+
+def link(request):
+    return render(request, 'link.html', {})
+
+def ytlink(request):
+    return render(request, 'ytlink.html', {})
+
+def stlink(request):
+    return render(request, 'stlink.html', {})
+
 
 
 def postT(request):
@@ -140,4 +152,17 @@ class DeletePost(DeleteView):
     success_url = reverse_lazy('view1')
     
     
+
+import math
+
+def calculator(request):
+    if request.method == 'POST':
+        expression = request.POST.get('expression', '')
+        try:
+            # Safely evaluate the mathematical expression
+            result = eval(expression, {"__builtins__": None}, math.__dict__)
+        except Exception as e:
+            result = "Error"
+        return render(request, 'calculator.html', {'result': result})
     
+    return render(request, 'calculator.html')

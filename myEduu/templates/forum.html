@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        
+        header {
+            background: #4f57d4;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        
+        h1 {
+            margin: 0;
+        }
+        
+        main {
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-summary, .next-steps {
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            border-bottom: 2px solid #4f57d4;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            margin-top: 15px;
+            color: #4f57d4;
+        }
+        
+        p {
+            line-height: 1.6;
+        }
+        
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #4f57d4;
+            color: #fff;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        
+    </style>
+    <title>EduConnect Project Progress</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>EduConnect Project Forum</h1>
+            
+        </header>
+        
+        <main>
+            <section class="progress-summary">
+                <h2>Project Features</h2>
+                <p>EduConnect is a comprehensive platform designed for users to connect, share knowledge, and engage in discussions. Below is a detailed overview of the key features implemented:</p>
+                
+                <h3>1. Posting</h3>
+                <p>Users can create and publish posts on various topics. Each post includes a title, content, and an option to categorize it, making it easier for others to find relevant information. The posting feature supports rich text formatting through CKEditor, allowing users to enhance their posts with different styles and media. 
+                   <strong>Example:</strong> A user might write a tutorial on a programming language and format the code snippets properly, include images, and add lists to enhance clarity.</p>
+
+                <h3>2. Viewing</h3>
+                <p>All users have access to view posts created by others. The viewing interface is designed to be user-friendly, displaying posts in an organized manner, complete with titles, authors, and a brief content summary. Users can navigate through multiple posts seamlessly, with options to sort by date, popularity, or category. 
+                   <strong>Benefit:</strong> This promotes an open exchange of knowledge where users can easily find information on topics of interest.</p>
+
+                <h3>3. Date and Time</h3>
+                <p>Each post displays the creation date and time, formatted in the Asia/Kolkata timezone. This ensures that users can track when the post was made, enhancing the context and relevance of the content. 
+                   <strong>Technical Detail:</strong> The date and time are retrieved from the database and formatted using Django's built-in utilities, ensuring consistency across the platform.</p>
+
+                <h3>4. Database</h3>
+                <p>The backend utilizes SQLite3 for data storage, providing a lightweight and efficient database solution for the project. SQLite3 supports dynamic data retrieval, ensuring that posts, comments, and user profiles are managed effectively. 
+                   <strong>Advantages:</strong> Its file-based nature simplifies deployment, making it an excellent choice for smaller applications like EduConnect.</p>
+
+                <h3>5. Framework</h3>
+                <p>EduConnect is built using the Django framework, which offers a robust structure for developing web applications. Django's built-in features for user authentication, database management, and routing enhance the overall development process and application performance. 
+                   <strong>Example:</strong> Utilizing Django's ORM allows seamless interaction with the database without writing complex SQL queries.</p>
+
+                <h3>6. Categories</h3>
+                <p>Posts can be organized into specific categories, allowing users to filter content based on their interests. This categorization feature enhances the user experience by simplifying the navigation process and making it easier to find relevant discussions. 
+                   <strong>Benefit:</strong> Users can quickly navigate to categories like "Programming," "Mathematics," or "Science," finding posts that align with their interests.</p>
+
+                <h3>7. Like/Dislike</h3>
+                <p>Users have the option to express their opinions on posts through a like/dislike mechanism. This feature not only encourages interaction but also provides insights into popular content based on user preferences. The like/dislike count updates in real-time, reflecting user engagement accurately. 
+                   <strong>Technical Detail:</strong> This feature is implemented using AJAX to provide a smooth user experience without requiring a full page reload.</p>
+
+                <h3>8. Comments</h3>
+                <p>Each post includes a comment section where users can engage in discussions, share their thoughts, and ask questions. This feature fosters community interaction and allows users to delve deeper into the topics presented in the posts. 
+                   <strong>Moderation:</strong> Comments are subject to moderation, ensuring that discussions remain constructive and relevant.</p>
+
+                <h3>9. Profile Page</h3>
+                <p>Users have personal profiles where they can view and manage their information, including their posts, comments, and preferences. Profiles also include options for editing personal details, adding profile pictures, and viewing engagement statistics. 
+                   <strong>Example:</strong> A user can see how many posts they’ve created and how many likes their posts have received, providing insight into their engagement level.</p>
+
+                <h3>10. Authentication</h3>
+                <p>EduConnect supports user authentication, enabling users to securely log in, log out, and register for new accounts. The authentication process is designed to be seamless and efficient, ensuring a secure experience for all users. 
+                   <strong>Technical Detail:</strong> Passwords are stored securely using hashing algorithms to protect user information.</p>
+
+                <h3>11. Edit/Create Profile</h3>
+                <p>Users can create and edit their profiles easily. The profile management interface allows users to update their information, change their passwords, and customize their profiles according to their preferences. 
+                   <strong>Benefit:</strong> This personalization enhances user engagement and creates a sense of ownership over their profiles.</p>
+
+                <h3>12. Edit/Delete Post</h3>
+                <p>Users have full control over their posts, with options to edit or delete them as needed. This functionality is crucial for maintaining the quality of content on the platform, allowing users to correct mistakes or remove outdated information. 
+                   <strong>Example:</strong> If a user finds an error in their post or wishes to update the information, they can easily make adjustments through a user-friendly interface.</p>
+
+                <h3>13. CKEditor</h3>
+                <p>CKEditor is integrated into the posting interface, providing a rich text editing experience. Users can format their posts with different styles, insert images, create lists, and utilize other editing tools to enhance their content. 
+                   <strong>Features:</strong> Users can also preview their posts before publishing, ensuring the final product meets their expectations.</p>
+            </section>
+
+            <section class="next-steps">
+                <h2>Next Steps</h2>
+                <p>As the project progresses, the following features and improvements are planned:</p>
+                <ul>
+                    <li>Enhance the comment functionality with threading and notifications for new comments to foster discussions.</li>
+                    <li>Implement a user notification system for post likes and comments to improve engagement.</li>
+                    <li>Optimize the user interface for better responsiveness and user experience across devices, including mobile.</li>
+                    <li>Conduct user testing sessions to gather feedback for future enhancements and usability improvements.</li>
+                    <li>Expand the categorization system to include tags for more granular content filtering, allowing users to discover posts more easily.</li>
+                    <li>Introduce an admin panel for content moderation and user management, enabling administrators to oversee the platform efficiently.</li>
+                </ul>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 EduConnect. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>

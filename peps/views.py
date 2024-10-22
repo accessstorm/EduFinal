@@ -43,11 +43,8 @@ class ShowProfilePageView(DetailView):
 
 class PasswordsChangeView(PasswordChangeView):
     form_class = PasswordChangingForm
-    #form_class = PasswordChangeForm
     template_name = 'registration/change_password.html'
     success_url = reverse_lazy('password_success')
-    #success_url = reverse_lazy('view1')
-    
     
 def password_success(request):
     return render(request, 'registration/password_success.html', {}) 

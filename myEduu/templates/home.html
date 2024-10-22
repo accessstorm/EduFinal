@@ -343,23 +343,13 @@
                         <a class="nav-link" href="#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#portfolio">Portfolio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#reviews">Reviews</a>
+                        <a class="nav-link" href="{% url 'forum' %}">Forum</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#team">Team</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
-                    </li>
                 </ul>
-                <a href="{% url 'login' %}" class="btn btn-brand ms-lg-3">Login</a>
-                <a href="{% url 'register' %}" class="btn btn-light ms-lg-2">Register</a>
+                <a href="{% url 'view1' %}" class="btn btn-brand ms-lg-3">Get Started</a>
             </div>
         </div>
     </nav>
@@ -372,8 +362,7 @@
                     <h1 data-aos="fade-left" class="text-uppercase text-white fw-semibold display-1">EduConnect</h1>
                     <h5 class="text-white mt-3 mb-4" data-aos="fade-right">A Comprehensive Learning Portal</h5>
                     <div data-aos="fade-up" data-aos-delay="50">
-                        <a href="{% url 'login' %}" class="btn btn-brand me-2">Login</a>
-                        <a href="{% url 'register' %}" class="btn btn-light ms-2">Register</a>
+                        <a href="{% url 'view1' %}" class="btn btn-brand me-2">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -389,7 +378,7 @@
                     <div class="section-title">
                         <h1 class="display-4 fw-semibold">About us</h1>
                         <div class="line"></div>
-                        <p>We are dedicated to enhancing the quality of education for both our teachers and students through our hard work.</p>
+                        <p>We are dedicated to enhancing the quality of education for our users through our hard work.</p>
                     </div>
                 </div>
             </div>
@@ -508,227 +497,21 @@
         <div class="container text-center">
             <div class="row g-4">
                 <div class="col-lg-3 col-sm-6" data-aos="fade-down" data-aos-delay="150">
-                    <h1 class="text-white display-4">90,00+</h1>
-                    <h6 class="text-uppercase mb-0 text-white mt-3">Total Downloads</h6>
                 </div>
                 <div class="col-lg-3 col-sm-6" data-aos="fade-down" data-aos-delay="250">
-                    <h1 class="text-white display-4">58K+</h1>
-                    <h6 class="text-uppercase mb-0 text-white mt-3">Trusted Clients</h6>
                 </div>
                 <div class="col-lg-3 col-sm-6" data-aos="fade-down" data-aos-delay="350">
-                    <h1 class="text-white display-4">5M+</h1>
-                    <h6 class="text-uppercase mb-0 text-white mt-3">Themes Designed</h6>
                 </div>
                 <div class="col-lg-3 col-sm-6" data-aos="fade-down" data-aos-delay="450">
-                    <h1 class="text-white display-4">100+</h1>
-                    <h6 class="text-uppercase mb-0 text-white mt-3">Team Members</h6>
                 </div>
             </div>
         </div>
     </section>
     
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Our Offers</h1>
-                        <div class="line"></div>
-                        <p>More to look out for!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-4">
-                <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
-                    <div class="portfolio-item image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/project-1.jpg' %}" alt="">
-                        </div>
-                        <a href="{% static 'images/project-1.jpg' %} data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
-                    </div>
-                    <div class="portfolio-item image-zoom mt-4">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/project-2.jpg' %}" alt="">
-                        </div>
-                        <a href="{% static 'images/project-2.jpg' %}" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-down" data-aos-delay="250">
-                    <div class="portfolio-item image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/project-3.jpg' %}" alt="">
-                        </div>
-                        <a href="{% static 'images/project-3.jpg' %}" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
-                    </div>
-                    <div class="portfolio-item image-zoom mt-4">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/project-4.jpg' %}" alt="">
-                        </div>
-                        <a href="{% static 'images/project-4.jpg' %}" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-down" data-aos-delay="350">
-                    <div class="portfolio-item image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/project-5.jpg' %}" alt="">
-                        </div>
-                        <a href="{% static 'images/project-5.jpg' %}" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
-                    </div>
-                    <div class="portfolio-item image-zoom mt-4">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/project-6.jpg' %}" alt="">
-                        </div>
-                        <a href="{% static 'images/project-6.jpg' %}" data-fancybox="gallery" class="iconbox"><i class="ri-search-2-line"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- REVIEW -->
-    <section id="reviews" class="section-padding bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Testimonials</h1>
-                        <div class="line"></div>
-                        <p>What do people think about Us?</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row gy-5 gx-4">
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="150">
-                    <div class="review">
-                        <div class="review-head p-4 bg-white theme-shadow">
-                            <div class="text-warning">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
-                        </div>
-                        <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="{% static 'images/avatar-1.jpg' %}" alt="">
-                            <div class="ms-3">
-                                <h5>Dianne Russell</h5>
-                                <small>UX Architect</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="250">
-                    <div class="review">
-                        <div class="review-head p-4 bg-white theme-shadow">
-                            <div class="text-warning">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
-                        </div>
-                        <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="{% static 'images/avatar-2.jpg' %}" alt="">
-                            <div class="ms-3">
-                                <h5>Dianne Russell</h5>
-                                <small>UX Architect</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="350">
-                    <div class="review">
-                        <div class="review-head p-4 bg-white theme-shadow">
-                            <div class="text-warning">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
-                        </div>
-                        <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="{% static 'images/avatar-3.jpg' %}" alt="">
-                            <div class="ms-3">
-                                <h5>Dianne Russell</h5>
-                                <small>UX Architect</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="450">
-                    <div class="review">
-                        <div class="review-head p-4 bg-white theme-shadow">
-                            <div class="text-warning">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
-                        </div>
-                        <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="{% static 'images/avatar-4.jpg' %}" alt="">
-                            <div class="ms-3">
-                                <h5>Dianne Russell</h5>
-                                <small>UX Architect</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="550">
-                    <div class="review">
-                        <div class="review-head p-4 bg-white theme-shadow">
-                            <div class="text-warning">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
-                        </div>
-                        <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="{% static 'images/avatar-5.jpg' %}" alt="">
-                            <div class="ms-3">
-                                <h5>Dianne Russell</h5>
-                                <small>UX Architect</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-sm-6" data-aos="fade-down" data-aos-delay="650">
-                    <div class="review">
-                        <div class="review-head p-4 bg-white theme-shadow">
-                            <div class="text-warning">
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                                <i class="ri-star-fill"></i>
-                            </div>
-                            <p>Amazing theme ipsum dolor sit amet consectetur adipisicing elit. Assumenda eum animi rerum ipsam impedit dicta voluptatem.</p>
-                        </div>
-                        <div class="review-person mt-4 d-flex align-items-center">
-                            <img class="rounded-circle" src="{% static 'images/avatar-6.jpg' %}" alt="">
-                            <div class="ms-3">
-                                <h5>Dianne Russell</h5>
-                                <small>UX Architect</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+    
 
     <!-- TEAM -->
     <section id="team" class="section-padding">
@@ -738,7 +521,7 @@
                     <div class="section-title">
                         <h1 class="display-4 fw-semibold">Team Members</h1>
                         <div class="line"></div>
-                        <p>From the department of Aiml,Second year</p>
+                        <p>From the department of Aiml, Second year engineering</p>
                     </div>
                 </div>
             </div>
@@ -746,11 +529,10 @@
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/person-1.jpg' %}" alt="">
+                            <img src="{% static 'images/phello.jpg' %}" alt="">
                         </div>
                         <div class="team-member-content">
-                            <h4 class="text-white">Jon Doe</h4>
-                            <p class="mb-0 text-white">Webflow Artist</p>
+                            <h4 class="text-white">Nirbhay Shegale</h4>
                         </div>
                     </div>
                 </div>
@@ -758,36 +540,34 @@
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="250">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/person-2.jpg' %}" alt="">
+                            <img src="{% static 'images/pbye.jpg' %}" alt="">
                         </div>
                         <div class="team-member-content">
-                            <h4 class="text-white">Jon Doe</h4>
-                            <p class="mb-0 text-white">Webflow Artist</p>
+                            <h4 class="text-white">Prabhat Singh</h4>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4" data-aos="fade-down" data-aos-delay="350">
                     <div class="team-member image-zoom">
                         <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/person-3.jpg' %}" alt="">
+                            <img src="{% static 'images/phi.jpg' %}" alt="">
                         </div>
                         <div class="team-member-content">
-                            <h4 class="text-white">Jon Doe</h4>
-                            <p class="mb-0 text-white">Webflow Artist</p>
+                            <h4 class="text-white">Harsh Shirke</h4>
                         </div>
                     </div>
                 </div>
-                
+                <hr>
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-4 d-flex justify-content-center" data-aos="fade-down" data-aos-delay="350">
                             <div class="team-member image-zoom text-center">
                                 <div class="image-zoom-wrapper">
-                                    <img src="{% static 'images/person-3.jpg' %}" alt="">
+                                    <img src="{% static 'images/person-4.jpg' %}" alt="">
                                 </div>
                                 <div class="team-member-content">
-                                    <h4 class="text-white">Jon Doe</h4>
-                                    <p class="mb-0 text-white">Webflow Artist</p>
+                                    <h4 class="text-white">Jayavrata Sengupta</h4>
+                                    <p class="mb-0 text-white">Website Dev</p>
                                 </div>
                             </div>
                         </div>
@@ -800,93 +580,10 @@
         </div>
     </section>
 
-    <!-- CONTACT -->
-    <section class="section-padding bg-light" id="contact" style="position: relative; background: linear-gradient(rgba(var(--c-brand-rgb), 0.8), rgba(var(--c-brand-rgb), 0.8)), url({% static 'images/counter.jpg' %}); background-position: center; background-size: cover;">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 text-white fw-semibold">Get in touch</h1>
-                        <div class="line bg-white"></div>
-                        <p class="text-white">Send us a email sharing your experience.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center" data-aos="fade-down" data-aos-delay="250">
-                <div class="col-lg-8">
-                    <form action="#" class="row g-3 p-lg-5 p-4 bg-white theme-shadow">
-                        <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" placeholder="Enter first name">
-                        </div>
-                        <div class="form-group col-lg-6">
-                            <input type="text" class="form-control" placeholder="Enter last name">
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <input type="email" class="form-control" placeholder="Enter Email address">
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <input type="text" class="form-control" placeholder="Enter subject">
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <textarea name="message" rows="5" class="form-control" placeholder="Enter Message"></textarea>
-                        </div>
-                        <div class="form-group col-lg-12 d-grid">
-                            <button class="btn btn-brand">Send Message</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- You can't apply pseudo-elements inline, so they won't be included here -->
-    </section>
 
-    <!-- BLOG -->
-    <section id="blog" class="section-padding">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center" data-aos="fade-down" data-aos-delay="150">
-                    <div class="section-title">
-                        <h1 class="display-4 fw-semibold">Recent News & Articles</h1>
-                        <div class="line"></div>
-                        <p>We love to craft digital experiances for brands rather than crap and more lorem ipsums and do crazy skills</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4" data-aos="fade-down" data-aos-delay="150">
-                    <div class="team-member image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/blog-post-1.jpg' %}" alt="">
-                        </div>
-                        <h5 class="mt-4">Web Design 2022</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi quos magni!</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-down" data-aos-delay="250">
-                    <div class="team-member image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/blog-post-2.jpg' %}" alt="">
-                        </div>
-                        <h5 class="mt-4">Web Design 2022</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi quos magni!</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-                <div class="col-md-4" data-aos="fade-down" data-aos-delay="350">
-                    <div class="team-member image-zoom">
-                        <div class="image-zoom-wrapper">
-                            <img src="{% static 'images/blog-post-3.jpg' %}" alt="">
-                        </div>
-                        <h5 class="mt-4">Web Design 2022</h5>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit sequi quos magni!</p>
-                        <a href="#">Read More</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<hr>
 
+    
     <!-- FOOTER -->
     <footer class="bg-dark">
         <div class="footer-top">

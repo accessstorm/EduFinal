@@ -32,7 +32,7 @@
         }
 
         .nav-link {
-            margin-right: 67px; /* Adjust spacing as needed */
+            margin-right: 35px; /* Adjust spacing as needed */
         }
 
         .logout-btn:hover {
@@ -203,6 +203,7 @@
     
 <br/>
 <br/>
+
     
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -211,7 +212,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-
+        {% if user.profile.id %}
         {% if cat_menu %}
         <ul class="navbar-nav ml-3">
             <li class="nav-item dropdown">
@@ -230,6 +231,7 @@
                 </div>
             </li>
         </ul>
+        {% endif %}
         {% endif %}
 
         <div class="collapse navbar-collapse" id="navbarNav">
@@ -262,10 +264,16 @@
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">&times;</a>
         <br/>
+        {% if user.profile.id %}
         <a href="{% url 'postT' %}">Create Post</a>
         <br/>
+        {% else %}
+        <a href="#">Login to access all Features</a>
+        {% endif %}
+        {% if user.profile.id %}
         <a href="{% url 'add_category' %}">Add a Category</a>
         <br/>
+        {% endif %}
         {% if user.profile.id %}
         <a href="{% url 'edit_profile_page' user.profile.id %}">Edit Profile page</a>
         {% elif user.is_authenticated %}
@@ -325,6 +333,7 @@
         <br/>
         <br/>
         <br/>
+        <hr>
     
         <!-- Updated like count display -->
         <h6 align='right'>
@@ -348,7 +357,7 @@
                     </button>
                 {% endif %}
             {% else %}
-                Login to like
+            <span style="color: #4f57d4;">Login to Like</span>
             {% endif %}
         </form>
     </div>
@@ -363,7 +372,7 @@
         post author: {{ post.author.id }}
     </p>
     
-
+    {% if user.is_authenticated %}
     <br/>
     <div class="container">
         <h2 class="mb-4" style="margin-left: 3px;">Comments</h2> <br/>
@@ -376,14 +385,16 @@
                 <div class="mb-2">
                     <a href="{% url 'add_comment' post.pk %}" class="btn btn-primary">Add Comment</a>
                 </div>
+                <br/>
                 {% for comment in post.comments.all %}
                     <div class="card mb-2">
                         <div class="card-body">
-                            <h5 class="card-title">{{ comment.name }}</h5>
+                            <strong><h5 class="card-title">{{ comment.heading }}</h5></strong>
                             <p class="card-text">{{ comment.body }}</p>
                             <small class="text-muted">{{ comment.date_added }}</small>
                         </div>
                     </div>
+                    <br/>
                 {% endfor %}
             {% endif %}
         </div>
@@ -391,6 +402,17 @@
     <br/>
     <br/>
     <br/>
+    {% else %}
+    <br/>
+    <br/>
+    <h4 align=center>Login or Register to view and add comments.</h4>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    {% endif %}
 
     <!-- JavaScript to toggle sidebar -->
     <script>
@@ -402,6 +424,8 @@
             document.getElementById("mySidebar").style.width = "0";
         }
     </script>
+
+
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

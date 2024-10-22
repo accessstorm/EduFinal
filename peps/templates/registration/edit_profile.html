@@ -144,8 +144,7 @@
         <form method="post" action="{% url 'edit_profile' %}">
             {% csrf_token %}
             {{ form.as_p }}
-            <br/><br/>
-            {{ user.profile.bio }}
+            
             <br/><br/>
             <button type="submit">Confirm Update</button>
         </form>
