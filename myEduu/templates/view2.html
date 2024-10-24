@@ -212,6 +212,9 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
+        
+        
+
         {% if user.profile.id %}
         {% if cat_menu %}
         <ul class="navbar-nav ml-3">
@@ -233,6 +236,10 @@
         </ul>
         {% endif %}
         {% endif %}
+
+        <a class="navbar-brand" onclick="window.print()">Print this Post</a>
+
+
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
@@ -425,7 +432,7 @@
         }
     </script>
 
-
+    
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
